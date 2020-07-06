@@ -1,27 +1,21 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="title">
-        {{ name }}
-      </h1>
-    </div>
+  <div v-if="$fetchState.pending">Fetching post #{{$route.params.id}}...</div>
+  <div v-else>
+    <PostFull :post="post"></PostFull>
   </div>
 </template>
 
 <script>
+import PostFull from "../../components/Post/PostFull";
 export default {
-  asyncData(context) {
-    // called every time before loading the component
-    // as the name said, it can be async
-    // Also, the returned object will be merged with your data object
-    return {name: 'World'}
+  components: {PostFull},
+  data () {
+    return {
+      post: {}
+    }
   },
-  fetch() {
-    // The `fetch` method is used to fill the store before rendering the page
-  },
-  head() {
-    // Set Meta Tags for this Page
-  },
-  // and more functionality to discover
+  async fetch() {
+    this.post = await this.$http.$get(`https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`)
+  }
 }
 </script>

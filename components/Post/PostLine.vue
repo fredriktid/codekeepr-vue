@@ -1,5 +1,5 @@
 <template>
-    <li>
+    <li class="post-line">
       <h2>{{ post.title }}</h2>
       <p>{{ post.body }}</p>
       <n-link :to="`/post/${post.id}`">les mer</n-link>

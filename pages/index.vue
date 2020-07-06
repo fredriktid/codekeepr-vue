@@ -23,7 +23,7 @@ export default {
     }
   },
   async fetch () {
-    this.posts = await this.$axios.$get('https://jsonplaceholder.typicode.com/posts')
+    this.posts = await this.$http.$get('https://jsonplaceholder.typicode.com/posts')
   }
 }
 </script>
